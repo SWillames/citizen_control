@@ -1,0 +1,52 @@
+<%= form_with(model: citizen) do |form| %>
+  <% if citizen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(citizen.errors.count, "error") %> prohibited this citizen from being saved:</h2>
+
+      <ul>
+        <% citizen.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :full_name, %>
+    <%= form.text_field :full_name, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf, %>
+    <%= form.text_field :cpf, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, %>
+    <%= form.text_field :email, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birth_date %>
+    <%= form.date_select :birth_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telephone %>
+    <%= form.text_field :telephone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photograph %>
+    <%= form.text_field :photograph %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
