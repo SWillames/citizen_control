@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'tty-spinner'
 gem 'faker'
+gem 'ffaker'
 gem 'ransack'
 gem 'pagy'
 
