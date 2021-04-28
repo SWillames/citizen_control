@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :state do
-    name { "MyString" }
-    abbr { "MyString" }
+    name { Faker::Address.state }
+    abbr { Faker::State.state_abbr }
   end
 end
