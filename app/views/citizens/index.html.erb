@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
+<li class="navbar-brand nav-item"><%= link_to 'Logout', destroy_user_session_path, class:"nav-link", method: :delete %></li>
 
 <h1>Citizens</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Full name,</th>
-      <th>Cpf,</th>
-      <th>Email,</th>
+      <th>Full name</th>
+      <th>Cpf</th>
+      <th>Email</th>
       <th>Birth date</th>
       <th>Telephone</th>
       <th>Photograph</th>
@@ -19,9 +20,9 @@
   <tbody>
     <% @citizens.each do |citizen| %>
       <tr>
-        <td><%= citizen.full_name, %></td>
-        <td><%= citizen.cpf, %></td>
-        <td><%= citizen.email, %></td>
+        <td><%= citizen.full_name %></td>
+        <td><%= citizen.cpf %></td>
+        <td><%= citizen.email %></td>
         <td><%= citizen.birth_date %></td>
         <td><%= citizen.telephone %></td>
         <td><%= citizen.photograph %></td>
