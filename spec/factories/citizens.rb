@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :citizen do
-    full_name { "MyString" }
-    cpf { "MyString" }
-    email { "MyString" }
-    birth_date { "2021-04-26" }
-    telephone { "MyString" }
-    photograph { "MyString" }
-    status { "MyString" }
+    full_name { Faker::Name.name_with_middle }
+    cpf { Faker::IDNumber.brazilian_citizen_number }
+    email { Faker::Internet.email }
+    birth_date { Faker::Date.between(from: '1960-01-01', to: '2021-01-01') }
+    telephone { FFaker::PhoneNumberBR.phone_number }
+    photograph { Rack::Test::UploadedFile.new(File.join("#{Rails.root}/spec/fixtures/profile.png")) }
+    status { "enabled" }
   end
 end
