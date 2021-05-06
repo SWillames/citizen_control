@@ -4,10 +4,14 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import $ from 'jquery'
+
 
 Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+
+
+require("jquery-mask-plugin")
+$.jMaskGlobals.watchDataMask = true;
+require('packs/citizen')
+require("@fortawesome/fontawesome-free")

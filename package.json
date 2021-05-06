@@ -9,7 +9,9 @@
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
+    "jquery-mask-plugin": "^1.14.16",
     "materialize-css": "^1.0.0",
+    "select2": "^4.1.0-rc.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
