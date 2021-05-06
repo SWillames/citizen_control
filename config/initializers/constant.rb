@@ -9,3 +9,5 @@ EMAIL_FORMAT = /
 \.[a-z]{2,6}                  # 5
 \Z
 /xi
+
+FULL_NAME_FORMAT = /[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?/
