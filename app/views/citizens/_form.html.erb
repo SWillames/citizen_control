@@ -1,7 +1,7 @@
 <%= form_with(model: citizen) do |form| %>
   <% if citizen.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(citizen.errors.count, "error") %> prohibited this citizen from being saved:</h2>
+      <h2><%= t('errors.template.body')%></h2>
 
       <ul>
         <% citizen.errors.each do |error| %>
@@ -11,42 +11,87 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :full_name %>
-    <%= form.text_field :full_name %>
+  <div class="form-row">
+    <div class="form-label-group col-md-6">
+      <%= form.text_field :full_name, autofocus: true, class: "form-control", placeholder: "  " %>
+      <%= form.label :full_name %>
+    </div>
+
+    <div class="form-label-group col-md-6" >
+      <%= form.text_field :cpf, autofocus: true, class: "form-control", placeholder: "   ",  'data-mask': '000.000.000-00' %>
+      <%= form.label :cpf %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :cpf %>
-    <%= form.text_field :cpf %>
+  <div class="form-row">
+    <div class="form-label-group col-md-6">
+      <%= form.text_field :email , autofocus: true, class: "form-control", placeholder: "   "%>
+      <%= form.label :email %>
+    </div>
+
+    <div class="form-label-group col-md-6" >
+      <%= form.date_field :birth_date, autofocus: true, class: "form-control", placeholder: "   "%>
+      <%= form.label :birth_date %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="form-row">
+    <div class="form-label-group col-md-6">
+      <%= form.text_field :telephone, autofocus: true, class: "form-control", placeholder: "   ",  'data-mask': '+55(00)00000-0000' %>
+      <%= form.label :telephone %>
+    </div>
+
+    <div class="form-label col-md-6" >
+      <%= label_tag nil, @citizen.class.human_attribute_name(:status) %> <br/>
+      <%= form.select :status, [["Ativo", "ativo"], ["Inativo", "desativado"]], placeholder: "  "  %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :birth_date %>
-    <%= form.date_select :birth_date %>
-  </div>
+  <h4>Endereço</h4>
+  <%= form.fields_for :address do |address_form| %>
+    <div class="form-row">
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :zip_code, class: "form-control cep", placeholder: "  "%>
+        <%= address_form.label :zip_code %>
+      </div>
 
-  <div class="field">
-    <%= form.label :telephone %>
-    <%= form.text_field :telephone %>
-  </div>
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :street, autofocus: true, class: "form-control", placeholder: "  " %>
+        <%= address_form.label :street %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :photograph %>
-    <%= form.text_field :photograph %>
-  </div>
+    <div class="form-row">
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :complement, autofocus: true, class: "form-control", placeholder: "   " %>
+        <%= address_form.label :complement %>
+      </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :district, autofocus: true, class: "form-control", placeholder: "   " %>
+        <%= address_form.label :district %>
+      </div>
+    </div>
 
+    <div class="form-row">
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :city, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "   " %>
+        <%= address_form.label :city %>
+      </div>
+
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :UF, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "   " %>
+        <%= address_form.label :UF %>
+      </div>
+
+      <div class="form-label-group col-md-6" >
+        <%= address_form.text_field :ibge, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "   "%>
+        <%= address_form.label :ibge %>
+      </div>
+    </div>
+  <% end %>
   <div class="actions">
-    <%= form.submit %>
+    <%= render 'citizens/buttons/save' %>
+    <%= render 'citizens/buttons/back' %>
   </div>
 <% end %>
