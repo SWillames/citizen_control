@@ -1,6 +1,7 @@
-<h1>Editing Citizen</h1>
+<h1><%= t('titles.edit', model: @citizen.model_name.human) %></h1>
 
-<%= render 'form', citizen: @citizen %>
 
-<%= link_to 'Show', @citizen %> |
-<%= link_to 'Back', citizens_path %>
+<div class="card">
+  <%= render 'form', citizen: @citizen %>
+</div>
+
