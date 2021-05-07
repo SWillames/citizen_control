@@ -14,6 +14,7 @@ class Citizen < ApplicationRecord
   validates_format_of :cpf, with: /\A.[0-9]+\z/
   validates_length_of :cpf, is: 11
   validates :status, presence: true, inclusion: { in: STATUS }
+  mount_uploader :image, ImageUploader
 
   def only_digit
     cpf.gsub!(/[^\d]/, '')
