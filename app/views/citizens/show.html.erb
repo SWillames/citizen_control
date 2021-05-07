@@ -1,9 +1,15 @@
 <div class="w-0">
   <form class="card-body card">
-    <div>
-      <strong>
-        <h3> <%= @citizen.full_name %> </h3>
-      </strong>
+    <div class="row">
+      <div class="col-md-1">
+        <%= image_tag(@citizen.image_url(:thumb).to_s) %>
+      </div>
+      <div class="col-ms-1">
+        <strong>
+          <h3> <%= @citizen.full_name %> </h3>
+        </strong>
+      </div>
+
     </div>
 
     <div>
