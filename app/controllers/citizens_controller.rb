@@ -1,9 +1,11 @@
 class CitizensController < ApplicationController
   before_action :authenticate_user!
   before_action :set_citizen, only: %i[ show edit update destroy ]
+  layout 'citizen_layout'
 
   def index
-    @citizens = Citizen.all
+    @search = Citizen.ransack(params[:q])
+    @pagy, @citizens = pagy(@search.result())
   end
 
   def show
@@ -11,6 +13,7 @@ class CitizensController < ApplicationController
 
   def new
     @citizen = Citizen.new
+    @citizen.build_address
   end
 
   def edit
@@ -20,7 +23,7 @@ class CitizensController < ApplicationController
     @citizen = Citizen.new(citizen_params)
 
     if @citizen.save
-      redirect_to @citizen, notice: "Citizen was successfully created."
+      redirect_to @citizen, notice: t('notice.title.new')
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +32,7 @@ class CitizensController < ApplicationController
 
   def update
     if @citizen.update(citizen_params)
-      redirect_to @citizen, notice: "Citizen was successfully updated."
+      redirect_to @citizen, notice: t('notice.title.edit')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,6 +46,7 @@ class CitizensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def citizen_params
-      params.require(:citizen).permit(:full_name, :cpf, :email, :birth_date, :telephone, :photograph, :status)
+      params.require(:citizen).permit(:full_name, :cpf, :email, :birth_date, :telephone, :status,
+                                      address_attributes: [:id, :zip_code, :street, :complement, :district, :city, :ibge, :UF])
     end
 end

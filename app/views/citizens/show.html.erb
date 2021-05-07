@@ -1,39 +1,76 @@
-<p id="notice"><%= notice %></p>
+<div class="w-0">
+  <form class="card-body card">
+    <div>
+      <strong>
+        <h3> <%= @citizen.full_name %> </h3>
+      </strong>
+    </div>
 
-<p>
-  <strong>Full name,:</strong>
-  <%= @citizen.full_name %>
-</p>
+    <div>
+      <h5> Detalhes: </h5>
 
-<p>
-  <strong>Cpf,:</strong>
-  <%= @citizen.cpf %>
-</p>
+     <!-- <ul>
+        <li> <%#= "#{@citizen.class.human_attribute_name(:cpf)}: #{@citizen.cpf}" %> </li>
+        <li> <%#= "#{@citizen.class.human_attribute_name(:email)}: #{@citizen.email}" %> </li>
+        <li> <%#= "#{@citizen.class.human_attribute_name(:birth_date)}: #{@citizen.birth_date}" %> </li>
+        <li> <%#= "#{@citizen.class.human_attribute_name(:status)}: #{@citizen.status}" %> </li>
+      </ul>-->
 
-<p>
-  <strong>Email,:</strong>
-  <%= @citizen.email %>
-</p>
+      <div class="form-group">
+        <%= label_tag nil, @citizen.class.human_attribute_name(:cpf) %>
+        <%= text_field_tag nil, @citizen.cpf, class:"form-control", disabled: true, 'data-mask': '000.000.000-00' %>
+      </div>
 
-<p>
-  <strong>Birth date:</strong>
-  <%= @citizen.birth_date %>
-</p>
+      <div class="form-group">
+        <%= label_tag nil, @citizen.class.human_attribute_name(:email) %>
+        <%= text_field_tag nil, @citizen.email, class:"form-control", disabled: true %>
+      </div>
 
-<p>
-  <strong>Telephone:</strong>
-  <%= @citizen.telephone %>
-</p>
+      <div class="form-group">
+        <%= label_tag nil, @citizen.class.human_attribute_name(:birth_date) %>
+        <%= text_field_tag nil, l(@citizen.birth_date), class:"form-control", disabled: true %>
+      </div>
 
-<p>
-  <strong>Photograph:</strong>
-  <%= @citizen.photograph %>
-</p>
+      <div class="form-group">
+        <%= label_tag nil, @citizen.class.human_attribute_name(:status) %>
+        <%= text_field_tag nil, @citizen.status, class:"form-control", disabled: true %>
+      </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @citizen.status %>
-</p>
+      <h5> Endereço: </h5>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <%= label_tag nil, Address.human_attribute_name(:zip_code) %>
+          <%= text_field_tag nil, @citizen.address.zip_code, class:"form-control cep", disabled: true %>
+        </div>
 
-<%= link_to 'Edit', edit_citizen_path(@citizen) %> |
-<%= link_to 'Back', citizens_path %>
+        <div class="form-group col-md-6">
+          <%= label_tag nil, Address.human_attribute_name(:street) %>
+          <%= text_field_tag nil, @citizen.address.street, class:"form-control", disabled: true %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= label_tag nil, Address.human_attribute_name(:complement) %>
+          <%= text_field_tag nil, @citizen.address.complement, class:"form-control", disabled: true %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= label_tag nil, Address.human_attribute_name(:district) %>
+          <%= text_field_tag nil, @citizen.address.district, class:"form-control", disabled: true %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= label_tag nil, Address.human_attribute_name(:city) %>
+          <%= text_field_tag nil, @citizen.address.city, class:"form-control", disabled: true %>
+        </div>
+
+        <div class="form-group col-md-2">
+          <%= label_tag nil, Address.human_attribute_name(:UF) %>
+          <%= text_field_tag nil, @citizen.address.UF, class:"form-control", disabled: true %>
+        </div>
+      </div>
+
+    <%= render 'citizens/buttons/back' %>
+    <%= render 'citizens/buttons/edit' %>
+    </div>
+  </form>
+</div>

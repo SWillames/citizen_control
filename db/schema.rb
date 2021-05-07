@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_000102) do
+ActiveRecord::Schema.define(version: 2021_05_05_004940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,22 +20,13 @@ ActiveRecord::Schema.define(version: 2021_04_27_000102) do
     t.string "street"
     t.string "complement"
     t.string "district"
-    t.bigint "city_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "UF", null: false
     t.string "ibge"
     t.bigint "citizen_id", null: false
+    t.string "city"
     t.index ["citizen_id"], name: "index_addresses_on_citizen_id"
-    t.index ["city_id"], name: "index_addresses_on_city_id"
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string "name"
-    t.bigint "state_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "citizens", force: :cascade do |t|
@@ -44,15 +35,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_000102) do
     t.string "email"
     t.date "birth_date"
     t.string "telephone"
-    t.string "photograph"
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "states", force: :cascade do |t|
-    t.string "name"
-    t.string "abbr"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,7 +53,5 @@ ActiveRecord::Schema.define(version: 2021_04_27_000102) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "citizens"
-  add_foreign_key "cities", "states"
 end
