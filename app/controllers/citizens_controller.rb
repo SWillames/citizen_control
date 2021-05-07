@@ -23,7 +23,7 @@ class CitizensController < ApplicationController
     @citizen = Citizen.new(citizen_params)
 
     if @citizen.save
-      redirect_to @citizen, notice: "Citizen was successfully created."
+      redirect_to @citizen, notice: t('notice.title.new')
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class CitizensController < ApplicationController
 
   def update
     if @citizen.update(citizen_params)
-      redirect_to @citizen, notice: "Citizen was successfully updated."
+      redirect_to @citizen, notice: t('notice.title.edit')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,7 +46,7 @@ class CitizensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def citizen_params
-      params.require(:citizen).permit(:full_name, :cpf, :email, :birth_date, :telephone, :photograph, :status,
+      params.require(:citizen).permit(:full_name, :cpf, :email, :birth_date, :telephone, :status,
                                       address_attributes: [:id, :zip_code, :street, :complement, :district, :city, :ibge, :UF])
     end
 end
