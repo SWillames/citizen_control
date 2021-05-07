@@ -17,6 +17,7 @@ gem 'faker'
 gem 'ffaker'
 gem 'ransack'
 gem 'pagy'
+gem 'carrierwave'
 
 
 group :development, :test do
