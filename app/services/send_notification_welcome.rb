@@ -7,11 +7,9 @@ class SendNotificationWelcome
     send_email(@citizen)
   end
 
+  protected
   def send_email(citizen)
     CitizenMailer.welcome_email(citizen).deliver
   end
 
-  #def send_sms(@citizen)
-
-  #end
 end

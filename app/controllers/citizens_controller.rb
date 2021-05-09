@@ -24,6 +24,7 @@ class CitizensController < ApplicationController
 
     if @citizen.save
       redirect_to @citizen, notice: t('notice.title.new')
+      SendNotificationWelcome.new(@citizen).execute
     else
       render :new, status: :unprocessable_entity
     end
